@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<div layout:fragment="content" class="container my-3">
+
+    <!-- 페이지 제목 -->
+    <div class="my-3 border-bottom">
+        <h4>회원가입</h4>
+    </div>
+
+    <!-- 회원가입 폼 -->
+    <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
+
+        <!-- 에러 메시지 -->
+        <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+
+        <!-- 사용자 ID -->
+        <div class="mb-3">
+            <label for="username" class="form-label">사용자ID</label>
+            <input type="text" th:field="*{username}" class="form-control">
+        </div>
+
+        <!-- 비밀번호 -->
+        <div class="mb-3">
+            <label for="password1" class="form-label">비밀번호</label>
+            <input type="password" th:field="*{password1}" class="form-control">
+        </div>
+
+        <!-- 비밀번호 확인 -->
+        <div class="mb-3">
+            <label for="password2" class="form-label">비밀번호 확인</label>
+            <input type="password" th:field="*{password2}" class="form-control">
+        </div>
+
+        <!-- 이메일 -->
+        <div class="mb-3">
+            <label for="email" class="form-label">이메일</label>
+            <input type="email" th:field="*{email}" class="form-control">
+        </div>
+
+        <!-- 회원가입 버튼 -->
+        <button type="submit" class="btn btn-primary">회원가입</button>
+
+    </form>
+
+</div>
+
+</html>
