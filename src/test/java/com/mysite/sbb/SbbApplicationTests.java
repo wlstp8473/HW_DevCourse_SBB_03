@@ -19,11 +19,11 @@ import java.util.Optional;
 @SpringBootTest
 class SbbApplicationTests {
 
-    //@Autowired
-    //private QuestionRepository questionRepository;
+    @Autowired
+    private QuestionRepository questionRepository;
 
-    //@Autowired
-    //private AnswerRepository answerRepository;
+    @Autowired
+    private AnswerRepository answerRepository;
 
     @Autowired
     private QuestionService questionService;

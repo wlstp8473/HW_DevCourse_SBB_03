@@ -3,6 +3,7 @@ package com.mysite.sbb.question;
 import com.mysite.sbb.answer.AnswerForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,9 +20,14 @@ public class QuestionController {
 
     @GetMapping("/list")
     //@ResponseBody -> 템플릿 사용으로 인해, 필요없어짐
-    public String list(Model model){
+    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page){
+        /*
+        //paging 구현으로 인해 List 대신 Page 사용으로 인해, 필요 없어짐
         List<Question> questionList = this.questionService.getList();
         model.addAttribute("questionList", questionList);
+        */
+        Page<Question> paging = this.questionService.getList(page);
+        model.addAttribute("paging", paging);
         return "question_list"; //템플릿 파일 반환
     }
 
@@ -46,5 +52,4 @@ public class QuestionController {
         this.questionService.create(questionForm.getSubject(), questionForm.getContent());
         return "redirect:/question/list"; //질문 저장 후 질문목록으로 이동
     }
-
 }
