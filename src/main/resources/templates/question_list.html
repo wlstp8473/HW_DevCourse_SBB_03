@@ -16,7 +16,8 @@
 
     <tbody>
     <tr th:each="question, loop : ${paging}">
-      <td th:text="${loop.count}"></td>
+      <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
+      <!--<td th:text="${loop.count}"></td> 게시물 번호 1~10까지만 표현하기에, 해당 코드 삭제 후. 위 코드 적용-->
 
       <td>
         <a th:href="@{|/question/detail/${question.id}|}"
