@@ -12,6 +12,11 @@
 
   <form th:action="@{/question/create}" th:object="${questionForm}" method="post">
 
+    <!-- CSRF 토큰 추가 -->
+    <input type="hidden"
+           th:name="${_csrf.parameterName}"
+           th:value="${_csrf.token}" />
+
     <!-- 에러 fragment 호출 -->
     <div th:replace="~{form_errors :: formErrorsFragment}"></div>
 
