@@ -29,14 +29,15 @@ public class QuestionController {
 
     @GetMapping("/list")
     //@ResponseBody -> 템플릿 사용으로 인해, 필요없어짐
-    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page){
+    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "kw", defaultValue = "") String kw){
         /*
         //paging 구현으로 인해 List 대신 Page 사용으로 인해, 필요 없어짐
         List<Question> questionList = this.questionService.getList();
         model.addAttribute("questionList", questionList);
         */
-        Page<Question> paging = this.questionService.getList(page);
+        Page<Question> paging = this.questionService.getList(page, kw);
         model.addAttribute("paging", paging);
+        model.addAttribute("kw", kw);
         return "question_list"; //템플릿 파일 반환
     }
 
